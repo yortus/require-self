@@ -15,7 +15,7 @@ However, if you wish to treat your `node_modules` directories like an artefact t
 ### Solution B: Add a self-referencing module to the `node_modules` folder
 A straight-forward solution is to add a file called `foobar.js` inside `foobar`'s `node_modules` subdirectory. This file simply contains `module.exports = require('..');`.
 
-You could automate this step using a simple `echo ... ` command in an npm script, but that won't work cross-platform. Another way is to call a node module from an npm script, that let that do the job reliably.
+You could automate this step using a simple `echo ... ` command in an npm script, but that won't work cross-platform. Another way is to put the equivalent of the `echo...` command into a reliable cross-platform node source file, and call that from an npm script.
 
 Solution B is precisely what `require-self` provides.
 
