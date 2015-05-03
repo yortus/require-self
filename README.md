@@ -8,6 +8,14 @@ This difference is minor but annoying in some scenarios. Example code copied fro
 
 # Solution
 
+A straight-forward solution is to add a file called `foobar.js` inside `foobar`'s `node_modules` folder, which simply contains `module.exports = require('..');`.
+
+You could automate this step using `echo ... ` in an npm script, but that is not a cross-platform solution. A better way is to call a node module that does the job from your npm script.
+
+This is precisely what `require-self` provides.
+
+# Usage
+
 1. Add `require-self` as a devDependency to your module.
 2. Call the `require-self` bin command in your module's `prepublish` npm script.
 
@@ -29,10 +37,6 @@ For example:
 ```
 
 Now all test and example code in the `foobar` module can write `var foobar = require('foobar');`.
-
-# How it works
-
-The `require-self` command adds a file to the module's `node_modules` folder, with the same name as the module, that simply does `module.exports = require('..');`
 
 
 ## License
