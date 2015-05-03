@@ -4,7 +4,7 @@ Many Node.js modules include tests and example code in their repos. This code ne
 
 But whereas modules depending on `foobar` can write `require('foobar')`, the test and example code within `foobar` cannot require itself that way. They must use a relative path like `var foobar = require('../..')` instead.
 
-This difference is minor but annoying in some case. Example code copied from `foobar` into your module won't work until you update the relative path(s) to `'foobar'`. And if `foobar` is authored in TypeScript, the line `var foobar = require('../..')` loses all ambient type information about the module.
+This difference is minor but annoying in some cases. Example code copied from `foobar` into your module won't work until you update the relative path(s) to `'foobar'`. And if `foobar` is authored in TypeScript, the line `var foobar = require('../..')` loses all ambient type information about the module.
 
 # Solution
 
