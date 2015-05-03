@@ -16,6 +16,7 @@
     "email": "yortus@gmail.com",
     "url": "http://github.com/yortus/"
   },
+  "readmeFilename": "README.md",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/yortus/require-self/issues"
