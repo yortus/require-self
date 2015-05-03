@@ -24,7 +24,7 @@ Solution B is precisely what `require-self` provides.
 1. Add `require-self` as a devDependency to your module.
 2. Call the `require-self` bin command in your module's `prepublish` npm script.
 
-For example:
+The `package.json` for your `foobar` module will end up something like this:
 ```
 {
     "name": "foobar",
