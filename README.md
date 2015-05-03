@@ -1,10 +1,10 @@
 # Problem
 
-Many Node.js modules include tests and example code in their repos. This code needs to require the module itself.
+Many Node.js modules include test and example code in their repos. This code needs to require the module itself.
 
-But whereas modules depending on `foobar` can write `require('foobar')`, the test and example code within `foobar` cannot require itself that way. They must use a relative path like `var foobar = require('../..')` instead.
+But whereas modules depending on `foobar` can write `require('foobar')`, the test and example code within `foobar` cannot require itself that way. It must use a relative path like `var foobar = require('../..')` instead.
 
-This difference is minor but annoying in some cases. Example code copied from `foobar` into your module won't work until you update the relative path(s) to `'foobar'`. And if `foobar` is authored in TypeScript, the line `var foobar = require('../..')` loses all ambient type information about the module.
+This difference is minor but annoying in some scenarios. Example code copied from `foobar` into your module won't work until you update the relative path(s) to `'foobar'`. And if `foobar` is authored in TypeScript, the line `var foobar = require('../..')` loses all ambient type information about the module.
 
 # Solution
 
@@ -12,7 +12,7 @@ This difference is minor but annoying in some cases. Example code copied from `f
 2. Call the `require-self` bin command in your module's `prepublish` npm script.
 
 For example:
-```json
+```
 {
     "name": "foobar",
 	...
