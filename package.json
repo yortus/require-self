@@ -1,0 +1,23 @@
+{
+  "name": "require-self",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "require-self": "bin/require-self.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yortus/require-self.git"
+  },
+  "author": {
+    "name": "Troy Gerwien",
+    "email": "yortus@gmail.com",
+    "url": "http://github.com/yortus/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yortus/require-self/issues"
+  },
+  "homepage": "https://github.com/yortus/require-self"
+}
