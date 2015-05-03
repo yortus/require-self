@@ -23,7 +23,7 @@ For example:
     },
     "devDependencies": {
 		...
-        "require-self": "^0.0.4"
+        "require-self": "^0.x"
     }
 
 ```
