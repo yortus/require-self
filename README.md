@@ -2,32 +2,36 @@
 
 Many Node.js modules include test and example code in their repos. This code needs to require the module itself.
 
-But whereas modules depending on `foobar` can write `require('foobar')`, the test and example code within `foobar` cannot require itself that way. It must use a relative path like `var foobar = require('../..')` instead.
+But whereas modules depending on `foobar` can write `require('foobar')`, the test and example code within `foobar` cannot reliably require itself that way. It must use a relative path like `var foobar = require('../..')` instead.
 
-This difference is minor but annoying in some scenarios. Example code copied from `foobar` into your module won't work until you update the relative path(s) to `'foobar'`. And if `foobar` is authored in TypeScript, the line `var foobar = require('../..')` loses all ambient type information about the module.
+This difference is minor but annoying in some scenarios. Example code copied from `foobar` into another module won't work until all the relative paths are updated to `'foobar'`. And if `foobar` is authored in TypeScript, the line `var foobar = require('../..')` loses all ambient type information about the module.
 
-# Solution
+# Solutions
+### Solution A: Do development work inside a `node_modules` folder
+If you ensure your `foobar` module directory is a direct child of a directory called `node_modules`, then it can require itself using `require('foobar')` and Node's module resolution logic will successfully resolve such a call.
 
-A straight-forward solution is to add a file called `foobar.js` inside `foobar`'s `node_modules` folder, which simply contains `module.exports = require('..');`.
+However, if you wish to treat your `node_modules` directories like an artefact that is always safe to clean/delete, this approach is not going to fly. Development work and git repos under `node_modules` may be inadvertently deleted.
 
-You could automate this step using `echo ... ` in an npm script, but that is not a cross-platform solution. A better way is to call a node module that does the job from your npm script.
+### Solution B: Add a self-referencing module to the `node_modules` folder
+A straight-forward solution is to add a file called `foobar.js` inside `foobar`'s `node_modules` subdirectory. This file simply contains `module.exports = require('..');`.
 
-This is precisely what `require-self` provides.
+You could automate this step using a simple `echo ... ` command in an npm script, but that won't work cross-platform. Another way is to put the equivalent of the `echo...` command into a reliable cross-platform node source file, and call that from an npm script.
+
+Solution B is precisely what `require-self` provides.
 
 # Usage
 
 1. Add `require-self` as a devDependency to your module.
 2. Call the `require-self` bin command in your module's `prepublish` npm script.
 
-For example:
+The `package.json` for your `foobar` module will end up something like this:
 ```
 {
     "name": "foobar",
 	...
     "scripts": {
         "build": "...",
-        "prepublish": "npm run build && require-self",
-        "test": "mocha test/*.js"
+        "prepublish": "npm run build && require-self"
     },
     "devDependencies": {
 		...
@@ -36,7 +40,7 @@ For example:
 
 ```
 
-Now all test and example code in the `foobar` module can write `var foobar = require('foobar');`.
+Now all test and example code in the `foobar` module can use `var foobar = require('foobar');`.
 
 
 ## License
