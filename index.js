@@ -3,7 +3,7 @@ var path = require('path');
 
 // Get the name of the module in the current working directory.
 var cwd = process.cwd();
-var pkg = require(path.join(cwd, 'package.json');
+var pkg = require(path.join(cwd, 'package.json'));
 var name = pkg.name;
 
 // Compute the location and content for the pseudo-module.
