@@ -1,10 +1,10 @@
 {
   "name": "require-self",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "description": "Enable doing require('foobar') from within the foobar module",
   "keywords": ["require", "self", "module"],
   "bin": {
-    "requireself": "./bin/requireself.js"
+    "require-self": "./bin/require-self"
   },
   "repository": {
     "type": "git",

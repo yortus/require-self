@@ -22,7 +22,7 @@ Solution B is precisely what `require-self` provides.
 # Usage
 
 1. Add `require-self` as a devDependency to your module.
-2. Call the `requireself` bin command in your module's `prepublish` npm script.
+2. Call the `require-self` bin command in your module's `prepublish` npm script.
 
 The `package.json` for your `foobar` module will end up something like this:
 ```
@@ -31,7 +31,7 @@ The `package.json` for your `foobar` module will end up something like this:
 	...
     "scripts": {
         "build": "...",
-        "prepublish": "npm run build && requireself"
+        "prepublish": "npm run build && require-self"
     },
     "devDependencies": {
 		...
