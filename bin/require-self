@@ -10,7 +10,14 @@ var name = pkg.name;
 
 // Compute the location and content for the pseudo-module.
 var modulePath = path.join(cwd, 'node_modules', name + '.js');
-var moduleText = "module.exports = require('..');";
+var moduleText = "module.exports = require('" + cwd + "');";
 
 // Create the pseudo-module.
+try {
+  fs.mkdirSync(path.dirname(modulePath));
+} catch (e) {
+  if (e.code !== 'EEXIST') {
+    throw e;
+  }
+}
 fs.writeFileSync(modulePath, moduleText);
