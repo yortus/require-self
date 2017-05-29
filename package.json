@@ -1,6 +1,6 @@
 {
   "name": "require-self",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Enable doing require('foobar') from within the foobar module",
   "keywords": ["require", "self", "module"],
   "bin": {
