@@ -10,7 +10,7 @@ var name = pkg.name;
 
 // Compute the location and content for the pseudo-module.
 var modulePath = path.join(cwd, 'node_modules', name + '.js');
-var moduleText = "module.exports = require('" + cwd + "');";
+var moduleText = "module.exports = require('" + cwd.replace(/\\/g, '\\\\') + "');";
 
 // Create the pseudo-module.
 try {
