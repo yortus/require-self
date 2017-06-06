@@ -22,7 +22,8 @@ Solution B is precisely what `require-self` provides.
 # Usage
 
 1. Add `require-self` as a devDependency to your module.
-2. Call the `require-self` bin command in your module's `prepublish` npm script.
+2. Call the `require-self` bin command in your module's `prepare` npm script.
+3. Run `npm install`, which will install deps and then run the `prepare` script. (*NOTE:* if you are using npm v3 or lower, you'll have to run the `prepare` script manually, via `npm run prepare`)
 
 The `package.json` for your `foobar` module will end up something like this:
 ```
@@ -31,7 +32,7 @@ The `package.json` for your `foobar` module will end up something like this:
 	...
     "scripts": {
         "build": "...",
-        "prepublish": "npm run build && require-self"
+        "prepare": "npm run build && require-self"
     },
     "devDependencies": {
 		...
