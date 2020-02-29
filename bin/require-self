@@ -11,13 +11,17 @@ var name = pkg.name;
 // Compute the location and content for the pseudo-module.
 var modulePath = path.join(cwd, 'node_modules', name + '.js');
 var moduleText = "module.exports = require('" + cwd.replace(/\\/g, '\\\\') + "');";
+var tsdeclPath = path.join(cwd, 'node_modules', name + '.d.ts');
+var tsdeclText = "export * from '" + cwd.replace(/\\/g, '\\\\') + "';";
 
 // Create the pseudo-module.
 try {
   fs.mkdirSync(path.dirname(modulePath));
+  fs.mkdirSync(path.dirname(tsDeclPath));
 } catch (e) {
   if (e.code !== 'EEXIST') {
     throw e;
   }
 }
 fs.writeFileSync(modulePath, moduleText);
+fs.writeFileSync(tsdeclPath, tsdeclText);
