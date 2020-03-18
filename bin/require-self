@@ -17,7 +17,7 @@ var tsdeclText = "export * from '" + cwd.replace(/\\/g, '\\\\') + "';";
 // Create the pseudo-module.
 try {
   fs.mkdirSync(path.dirname(modulePath));
-  fs.mkdirSync(path.dirname(tsDeclPath));
+  fs.mkdirSync(path.dirname(tsdeclPath));
 } catch (e) {
   if (e.code !== 'EEXIST') {
     throw e;
